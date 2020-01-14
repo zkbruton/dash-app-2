@@ -7,7 +7,7 @@ import os
 import dash_table as dt
 import pandas as pd
 
-url = 'data.xlsx'
+url = 'C:\\Users\\212774947\\Desktop\\data.xlsx'
 df_albon = pd.read_excel(url)
 
 
@@ -35,7 +35,16 @@ app.layout = html.Div(children=[
     ),
     dcc.Input(id='my-id', value='initial value', type="text"),
     html.Div(id='my-div'),
-    dt.DataTable(data=df_albon.head(10).to_dict('records'))
+    html.Br(),
+    dt.DataTable(style_table={'overflowX':'scroll'},
+               style_cell={'minWidth':'45px'},
+               style_header={'backgroundColor':'#f8f8f8','fontWeight':'bold'},
+               style_data_conditional=[{'if':{'row_index':'odd'},
+                                        'backgroundColor':'#f8f8f8'}],
+               columns=[{"name": i, "id": i} for i in df_albon.columns],
+               style_as_list_view=True,
+               data=df_albon.to_dict('records')),
+    html.Br()
 ])
 
 @app.callback(
