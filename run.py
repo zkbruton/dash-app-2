@@ -7,7 +7,7 @@ import os
 import dash_table as dt
 import pandas as pd
 
-url = 'https://raw.githubusercontent.com/chrisalbon/simulated_datasets/master/data.xlsx'
+url = 'data.xlsx'
 df_albon = pd.read_excel(url)
 
 
@@ -37,6 +37,13 @@ app.layout = html.Div(children=[
     html.Div(id='my-div'),
     dt.DataTable(data=df_albon.head(10).to_dict('records'))
 ])
+
+@app.callback(
+    Output(component_id='my-div', component_property='children'),
+    [Input(component_id='my-id', component_property='value')]
+)
+def update_output_div(input_value):
+    return 'You\'ve entered "{}"'.format(input_value)
 
 @app.callback(
     Output(component_id='my-div', component_property='children'),
