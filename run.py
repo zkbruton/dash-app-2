@@ -7,7 +7,7 @@ import os
 import dash_table as dt
 import pandas as pd
 
-url = 'C:\\Users\\212774947\\Desktop\\data.xlsx'
+url = 'https://raw.githubusercontent.com/chrisalbon/simulated_datasets/master/data.xlsx'
 df_albon = pd.read_excel(url)
 
 
